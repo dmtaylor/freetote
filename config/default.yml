@@ -1,0 +1,4 @@
+database:
+    dbtype: sqlite
+    url: data/freetote.db
+

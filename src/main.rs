@@ -2,8 +2,17 @@ use std::io;
 use std::io::BufRead;
 use std::io::Write;
 
+extern crate config;
+extern crate serde;
+
+#[macro_use]
+extern crate serde_derive;
+
+mod settings;
+use settings::Settings;
+
 fn main() {
-    // TODO read config
+    let config = Settings::new();
 
     // TODO setup db
 
