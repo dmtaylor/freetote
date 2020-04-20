@@ -1,4 +1,7 @@
 database:
-    dbtype: sqlite
-    url: data/freetote.db
+    dbtype: postgres
+    url: postgres://freetote@localhost
+    dbname: freetote
+    user: freetote
+    passwd: freetote
 
