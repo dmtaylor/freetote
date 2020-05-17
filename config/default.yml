@@ -1,6 +1,5 @@
 database:
-    dbtype: postgres
-    url: postgres://freetote@localhost
+    url: localhost
     dbname: freetote
     user: freetote
     passwd: freetote
