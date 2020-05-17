@@ -13,6 +13,10 @@ use settings::Settings;
 
 fn main() {
     let config = Settings::new();
+    let config = match config {
+        Ok(settings) => settings,
+        Err(err) => panic!("Error parsing settings: {}", err),
+    };
 
     // TODO setup db
 

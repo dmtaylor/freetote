@@ -3,15 +3,15 @@ use std::env;
 
 const CONF_PATH: &str = "./config/";
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Database {
     url: String,
-    database: String,
+    dbname: String,
     user: String,
     passwd: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Settings {
     database: Database,
 }
@@ -19,7 +19,8 @@ pub struct Settings {
 impl Settings {
     pub fn new() -> Result<Self, ConfigError> {
         let mut cfg = Config::new();
-        cfg.merge(File::with_name(&format!("{}{}", CONF_PATH, "default.yml")));
+        cfg.set_default("database.passwd", "").unwrap();
+        cfg.merge(File::with_name(&format!("{}{}", CONF_PATH, "default.yml"))).unwrap();
 
         // TODO add user defined configs
 
