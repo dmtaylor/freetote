@@ -7,8 +7,11 @@ extern crate serde;
 
 #[macro_use]
 extern crate serde_derive;
+extern crate diesel;
 
 mod settings;
+mod db;
+
 use settings::Settings;
 
 fn main() {
@@ -19,6 +22,7 @@ fn main() {
     };
 
     // TODO setup db
+    let db_conn = db::establish_connection(config.database);
 
     start_cli();
     println!("");

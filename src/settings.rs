@@ -5,15 +5,15 @@ const CONF_PATH: &str = "./config/";
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Database {
-    url: String,
-    dbname: String,
-    user: String,
-    passwd: String,
+    pub url: String,
+    pub dbname: String,
+    pub user: String,
+    pub passwd: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Settings {
-    database: Database,
+    pub database: Database,
 }
 
 impl Settings {
