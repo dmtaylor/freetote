@@ -3,6 +3,7 @@ use std::io::BufRead;
 use std::io::Write;
 
 extern crate config;
+extern crate chrono;
 extern crate serde;
 
 #[macro_use]
