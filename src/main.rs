@@ -8,10 +8,13 @@ extern crate serde;
 
 #[macro_use]
 extern crate serde_derive;
+#[macro_use]
 extern crate diesel;
 
 mod settings;
 mod db;
+pub mod schema;
+pub mod models;
 
 use settings::Settings;
 

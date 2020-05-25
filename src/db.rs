@@ -1,5 +1,3 @@
-#[macro_use]
-
 use diesel::prelude::*;
 use diesel::pg::PgConnection;
 
