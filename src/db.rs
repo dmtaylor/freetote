@@ -1,12 +1,14 @@
 use diesel::prelude::*;
 use diesel::pg::PgConnection;
 
-use crate::settings::Database;
-//mod settings;
+use crate::settings;
+use crate::models::*;
 
-pub fn establish_connection(db_settings: Database) -> PgConnection {
-    // TODO
+pub struct FTDB {
+    conn: PgConnection,
+}
 
+pub fn new_ftdb(db_settings: settings::Database) -> FTDB {
     let pw_str = if db_settings.passwd == "" {
         String::from("")
     } else {
@@ -20,7 +22,11 @@ pub fn establish_connection(db_settings: Database) -> PgConnection {
         db_settings.url,
         db_settings.dbname
     );
-    PgConnection::establish(&db_url).expect(&format!("Error connecting to {}", db_url))
+    FTDB {
+        conn: PgConnection::establish(&db_url).expect(&format!("Error connecting to {}", db_url)),
+    }
+}
 
+impl FTDB {
 }
 

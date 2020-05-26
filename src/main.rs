@@ -26,7 +26,7 @@ fn main() {
     };
 
     // TODO setup db
-    let db_conn = db::establish_connection(config.database);
+    let ftdb = db::new_ftdb(config.database);
 
     start_cli();
     println!("");
