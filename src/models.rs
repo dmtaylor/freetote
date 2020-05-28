@@ -1,8 +1,8 @@
 use super::chrono;
 
-#[derive(Queryable)]
+#[derive(Queryable, Debug)]
 pub struct Bet {
-    pub bet_id: u32,
+    pub bet_id: i32,
     pub bet_name: String,
     pub bet_description: Option<String>,
     pub bet_close: Option<chrono::NaiveDateTime>,

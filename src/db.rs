@@ -5,7 +5,7 @@ use crate::settings;
 use crate::models::*;
 
 pub struct FTDB {
-    conn: PgConnection,
+    pub conn: PgConnection,
 }
 
 pub fn new_ftdb(db_settings: settings::Database) -> FTDB {

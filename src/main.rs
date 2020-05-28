@@ -25,15 +25,14 @@ fn main() {
         Err(err) => panic!("Error parsing settings: {}", err),
     };
 
-    // TODO setup db
     let ftdb = db::new_ftdb(config.database);
 
-    start_cli();
+    start_cli(ftdb);
     println!("");
     println!("Exiting...");
 }
 
-fn start_cli() {
+fn start_cli(db: db::FTDB) {
     println!("Starting Freetote CLI");
     print!("freetote> ");
     flush_streams();
