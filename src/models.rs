@@ -1,12 +1,22 @@
 use super::chrono;
+use super::schema::bets;
 
-#[derive(Queryable, Debug)]
+#[derive(Queryable, AsChangeset, Debug)]
+#[primary_key(bet_id)]
 pub struct Bet {
     pub bet_id: i32,
     pub bet_name: String,
     pub bet_description: Option<String>,
     pub bet_close: Option<chrono::NaiveDateTime>,
     pub created_on: chrono::NaiveDateTime,
+}
+
+#[derive(Insertable)]
+#[table_name="bets"]
+pub struct NewBet<'a> {
+    pub bet_name: &'a str,
+    pub bet_description: Option<&'a str>,
+    pub bet_close: Option<&'a chrono::NaiveDateTime>,
 }
 
 #[derive(Queryable)]

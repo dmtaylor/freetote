@@ -1,18 +1,34 @@
-use crate::models::*;
+use self::models::{Bet, NewBet};
 use crate::db::FTDB;
+use crate::models::*;
 use diesel::prelude::*;
 
 impl FTDB {
     pub fn get_bet_by_id(&self, id: i32) -> QueryResult<Bet> {
         use crate::schema::bets::dsl::*;
-        bets.find(id)
-            .first(&self.conn)
+        bets.find(id).first(&self.conn)
     }
 
     pub fn get_bet_by_name(&self, name: &str) -> QueryResult<Bet> {
         use crate::schema::bets::dsl::*;
-        bets.filter(bet_name.eq(name))
-            .first(&self.conn)
+        bets.filter(bet_name.eq(name)).first(&self.conn)
+    }
+    
+    pub fn new_bet<'a>(&self,
+        name: &'a str,
+        desc: Option<&'a str>,
+        close: Option<&'a chrono::NaiveDateTime>)
+        -> QueryResult<Bet>
+    {
+        use schema::bets;
+        let new_bet = NewBet {
+            bet_name: name,
+            bet_description: desc,
+            bet_close: close,
+        };
+        diesel::insert_into(bets::table)
+            .values(&new_bet)
+            .get_result(&self.conn)
     }
 
 }
@@ -31,7 +47,7 @@ pub fn print_bet(bet: &Bet) {
 }
 
 pub fn is_bet_closed(bet: &Bet) -> bool {
-    let now : = chrono::Utc::now().naive_utc();
+    let now = chrono::Utc::now().naive_utc();
     match &bet.bet_close {
         Some(close) => {
             if now < *close {
@@ -39,7 +55,7 @@ pub fn is_bet_closed(bet: &Bet) -> bool {
             } else {
                 false
             }
-        },
+        }
         None => false,
     }
 }
