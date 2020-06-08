@@ -13,7 +13,7 @@ table! {
         outcome_id -> Int4,
         outcome_name -> Varchar,
         outcome_text -> Nullable<Text>,
-        bet_id -> Nullable<Int4>,
+        bet_id -> Int4,
         created_on -> Timestamp,
     }
 }
@@ -31,9 +31,9 @@ table! {
 table! {
     wagers (wager_id) {
         wager_id -> Int4,
-        bet_id -> Nullable<Int4>,
-        user_id -> Nullable<Int4>,
-        outcome_id -> Nullable<Int4>,
+        bet_id -> Int4,
+        user_id -> Int4,
+        outcome_id -> Int4,
         amount -> Int8,
         created_on -> Timestamp,
     }

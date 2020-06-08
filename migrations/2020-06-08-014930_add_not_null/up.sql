@@ -1,0 +1,7 @@
+ALTER TABLE outcomes
+    ALTER COLUMN bet_id SET NOT NULL;
+
+ALTER TABLE wagers
+    ALTER COLUMN bet_id SET NOT NULL,
+    ALTER COLUMN user_id SET NOT NULL,
+    ALTER COLUMN outcome_id SET NOT NULL;

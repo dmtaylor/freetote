@@ -24,7 +24,7 @@ pub struct Outcome {
     pub outcome_id: u32,
     pub outcome_name: String,
     pub outcome_text: Option<String>,
-    pub bet_id: Option<u32>,
+    pub bet_id: u32,
     pub created_on: chrono::NaiveDateTime,
 }
 
@@ -40,9 +40,9 @@ pub struct User {
 #[derive(Queryable)]
 pub struct Wager {
     pub wager_id: u32,
-    pub bet_id: Option<u32>,
-    pub user_id: Option<u32>,
-    pub outcome_id: Option<u32>,
+    pub bet_id: u32,
+    pub user_id: u32,
+    pub outcome_id: u32,
     pub amount: u64,
     pub created_on: chrono::NaiveDateTime,
 }
