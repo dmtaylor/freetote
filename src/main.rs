@@ -13,6 +13,9 @@ extern crate diesel;
 
 mod settings;
 mod db;
+mod bets;
+mod users;
+mod outcomes;
 pub mod schema;
 pub mod models;
 

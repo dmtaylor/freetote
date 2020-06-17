@@ -1,4 +1,4 @@
-use self::models::{Bet, NewBet};
+use crate::models::{Bet, NewBet};
 use crate::db::FTDB;
 use crate::models::*;
 use diesel::prelude::*;
@@ -20,7 +20,7 @@ impl FTDB {
         close: Option<&'a chrono::NaiveDateTime>)
         -> QueryResult<Bet>
     {
-        use schema::bets;
+        use crate::schema::bets;
         let new_bet = NewBet {
             bet_name: name,
             bet_description: desc,
