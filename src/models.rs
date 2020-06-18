@@ -1,5 +1,5 @@
 use super::chrono;
-use super::schema::{bets, outcomes, users, wagers};
+use super::schema::{bets, outcomes, users, wagers, winners};
 
 #[derive(Queryable, AsChangeset, Debug)]
 #[primary_key(bet_id)]
@@ -74,3 +74,18 @@ pub struct NewWager<'a> {
     pub amount: &'a i64,
 }
 
+#[derive(Queryable, AsChangeset, Debug)]
+#[primary_key(id)]
+pub struct Winner {
+    pub id: i32,
+    pub bet_id: i32,
+    pub outcome_id: i32,
+    pub created_on: chrono::NaiveDateTime,
+}
+
+#[derive(Insertable)]
+#[table_name="winners"]
+pub struct NewWinner<'a> {
+    pub bet_id: &'a i32,
+    pub outcome_id: &'a i32,
+}

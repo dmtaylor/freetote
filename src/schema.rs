@@ -39,14 +39,26 @@ table! {
     }
 }
 
+table! {
+    winners (id) {
+        id -> Int4,
+        bet_id -> Int4,
+        outcome_id -> Int4,
+        created_on -> Timestamp,
+    }
+}
+
 joinable!(outcomes -> bets (bet_id));
 joinable!(wagers -> bets (bet_id));
 joinable!(wagers -> outcomes (outcome_id));
 joinable!(wagers -> users (user_id));
+joinable!(winners -> bets (bet_id));
+joinable!(winners -> outcomes (outcome_id));
 
 allow_tables_to_appear_in_same_query!(
     bets,
     outcomes,
     users,
     wagers,
+    winners,
 );
