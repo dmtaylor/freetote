@@ -33,29 +33,31 @@ impl FTDB {
 
 }
 
-pub fn print_bet(bet: &Bet) {
-    println!("Bet Name:\n{}\n", bet.bet_name);
-    match &bet.bet_description {
-        Some(desc) => println!("Bet Description:\n{}\n", desc),
-        None => println!("No Bet Description"),
-    };
-    match &bet.bet_close {
-        Some(close) => println!("Bet Close: {}", close),
-        None => println!("No bet close date set"),
-    };
-    println!("-----------------------------");
-}
+impl Bet {
+    pub fn print_bet(&self) {
+        println!("Bet Name:\n{}\n", &self.bet_name);
+        match &self.bet_description {
+            Some(desc) => println!("Bet Description:\n{}\n", desc),
+            None => println!("No Bet Description"),
+        };
+        match &self.bet_close {
+            Some(close) => println!("Bet Close: {}", close),
+            None => println!("No bet close date set"),
+        };
+        println!("-----------------------------");
+    }
 
-pub fn is_bet_closed(bet: &Bet) -> bool {
-    let now = chrono::Utc::now().naive_utc();
-    match &bet.bet_close {
-        Some(close) => {
-            if now < *close {
-                true
-            } else {
-                false
+    pub fn is_closed(&self) -> bool {
+        let now = chrono::Utc::now().naive_utc();
+        match &self.bet_close {
+            Some(close) => {
+                if now < *close {
+                    true
+                } else {
+                    false
+                }
             }
+            None => false,
         }
-        None => false,
     }
 }

@@ -1,7 +1,7 @@
 use super::chrono;
 use super::schema::{bets, outcomes, users, wagers, winners};
 
-#[derive(Queryable, AsChangeset, Debug)]
+#[derive(Identifiable, Queryable, AsChangeset, Debug)]
 #[primary_key(bet_id)]
 pub struct Bet {
     pub bet_id: i32,
@@ -19,7 +19,7 @@ pub struct NewBet<'a> {
     pub bet_close: Option<&'a chrono::NaiveDateTime>,
 }
 
-#[derive(Queryable, AsChangeset, Debug)]
+#[derive(Identifiable, Queryable, AsChangeset, Debug)]
 #[primary_key(outcome_id)]
 pub struct Outcome {
     pub outcome_id: i32,
@@ -37,7 +37,7 @@ pub struct NewOutcome<'a> {
     pub bet_id: &'a i32,
 }
 
-#[derive(Queryable, AsChangeset, Debug)]
+#[derive(Identifiable, Queryable, AsChangeset, Debug)]
 #[primary_key(user_id)]
 pub struct User {
     pub user_id: i32,
@@ -54,7 +54,7 @@ pub struct NewUser<'a> {
     pub user_description: Option<&'a str>,
 }
 
-#[derive(Queryable, AsChangeset, Debug)]
+#[derive(Identifiable, Queryable, AsChangeset, Debug)]
 #[primary_key(wager_id)]
 pub struct Wager {
     pub wager_id: i32,
@@ -74,7 +74,7 @@ pub struct NewWager<'a> {
     pub amount: &'a i64,
 }
 
-#[derive(Queryable, AsChangeset, Debug)]
+#[derive(Queryable, Identifiable, AsChangeset, Debug)]
 #[primary_key(id)]
 pub struct Winner {
     pub id: i32,

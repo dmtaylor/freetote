@@ -5,6 +5,7 @@ use std::io::Write;
 extern crate config;
 extern crate chrono;
 extern crate serde;
+extern crate anyhow;
 
 #[macro_use]
 extern crate serde_derive;
@@ -16,6 +17,7 @@ mod db;
 mod bets;
 mod users;
 mod outcomes;
+mod winners;
 pub mod schema;
 pub mod models;
 
